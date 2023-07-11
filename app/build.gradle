@@ -25,8 +25,24 @@ android {
         }
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file("./../appkey.jks")
+            storePassword "zhouzidan"
+            keyAlias "appupgrade"
+            keyPassword "zhouzidan"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
